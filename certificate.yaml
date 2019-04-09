@@ -1,0 +1,18 @@
+---
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: ambassador-certs
+  namespace: cert-manager
+spec:
+  secretName: ambassador-certs
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: 'smart.io'
+  acme:
+    config:
+    - dns01:
+        provider: route53
+      domains:
+      - 'kuk.smart.io'
